@@ -6,6 +6,11 @@ use seahorse::{App, Command, Context};
 use std::env;
 use std::fs;
 
+mod sql;
+mod template;
+
+use template::new_template;
+
 fn migrate_database(c: &Context) {
     info!("performing migrations");
 
@@ -23,7 +28,7 @@ fn migrate_database(c: &Context) {
     let mut client = Client::connect(&database_url, NoTls).expect("could not connect to database");
 
     // Glob migrations.
-    for entry in glob(&format!("{}/*.sql", sql_path)).expect("Failed to read glob pattern") {
+    for entry in sql::get_files(&sql_path).expect("Failed to read glob pattern") {
         match entry {
             Ok(path) => {
                 info!("executing migration: {:?}", path);
@@ -95,6 +100,13 @@ fn main() {
                 .alias("s")
                 .usage("seed [path-to-seeds]")
                 .action(seed_database),
+        )
+        .command(
+            Command::new("new")
+                .description("new migration or seed")
+                .alias("n")
+                .usage("new [path-to-seeds-or-migration] [name-of-migration-or-seed]")
+                .action(new_template),
         );
 
     app.run(args);
