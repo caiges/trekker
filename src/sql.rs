@@ -52,6 +52,7 @@ mod tests {
     fn test_last_migration_prefix() {
         let paths = glob("test/sql_files/*.sql").expect("could not get test sql files");
         let last_migration_prefix = last_migration_prefix(paths);
+
         assert!(last_migration_prefix.unwrap() == "01");
     }
 
@@ -61,7 +62,6 @@ mod tests {
         let last_migration_prefix = last_migration_prefix(paths).unwrap();
         let next_migration_prefix = next_migration_prefix(last_migration_prefix).unwrap();
 
-        println!("{:?}", next_migration_prefix);
         assert!(next_migration_prefix == "002");
     }
 
