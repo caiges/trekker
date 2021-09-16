@@ -28,7 +28,7 @@ fn migrate_database(c: &Context) {
     let mut client = Client::connect(&database_url, NoTls).expect("could not connect to database");
 
     // Glob migrations.
-    for entry in sql::get_files(&sql_path).expect("Failed to read glob pattern") {
+    for entry in sql::get_paths(&sql_path).expect("Failed to read glob pattern") {
         match entry {
             Ok(path) => {
                 info!("executing migration: {:?}", path);

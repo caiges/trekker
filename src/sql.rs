@@ -1,7 +1,7 @@
 use glob::{glob, Paths, PatternError};
 use std::num::ParseIntError;
 
-pub fn get_files(path: &str) -> Result<Paths, PatternError> {
+pub fn get_paths(path: &str) -> Result<Paths, PatternError> {
     glob(&format!("{}/*.sql", path))
 }
 
@@ -37,6 +37,13 @@ fn next_migration_prefix(last_prefix: String) -> Result<String, ParseIntError> {
     Ok(format!("{:0>3}", last_prefix_int + 1).to_string())
 }
 
+pub fn new_file_name(path: &str, name: &str) -> String {
+    let paths = get_paths(path).unwrap();
+    let next_migration_prefix =
+        next_migration_prefix(last_migration_prefix(paths).unwrap()).unwrap();
+    format!("{}-{}.sql", next_migration_prefix, name)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -56,5 +63,12 @@ mod tests {
 
         println!("{:?}", next_migration_prefix);
         assert!(next_migration_prefix == "002");
+    }
+
+    #[test]
+    fn test_new_file_name() {
+        let nfn = new_file_name("test/sql_files", "foo");
+
+        assert!(nfn == "002-foo.sql");
     }
 }
