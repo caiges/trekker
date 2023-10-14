@@ -81,7 +81,7 @@ fn main() {
         .description(env!("CARGO_PKG_DESCRIPTION"))
         .author(env!("CARGO_PKG_AUTHORS"))
         .version(env!("CARGO_PKG_VERSION"))
-        .usage("db [args]")
+        .usage("trekker [args]")
         .command(
             Command::new("migrate")
                 .description("migrate database")
