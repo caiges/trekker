@@ -1,9 +1,10 @@
 [package]
 name = "trekker"
 description = "A command line tool to help you manage your PostgreSQL database migrations and seeds."
-version = "0.2.1"
+version = "0.2.2"
 authors = ["caiges <caigesn@gmail.com>"]
 edition = "2018"
+license = "Unlicense"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

@@ -4,6 +4,10 @@ Manage database migrations and seeds. Trekker is an incredibly specific tool use
 
 ## Usage
 
+### Install
+
+`cargo install trekker`
+
 ### Connecting
 
 Trekker uses the `DATABASE_URL` variable to connect to your Postgres database.
