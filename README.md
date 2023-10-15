@@ -21,7 +21,7 @@ create table if not exists subreddits (
 );
 ```
 
-I generally use a three digit padded prefix to control execution order but you could also use a timestamp or date.
+I use a three digit padded prefix to control execution order but you could also use a timestamp or date.
 
 To run all of the migrations, use the migrate command:
 
@@ -42,7 +42,7 @@ insert into subreddits (subreddit) values
 ;
 ```
 
-
+I use a three digit padded prefix to control execution order but you could also use a timestamp or date.
 
 To run all of the seeds, use the seed command:
 
