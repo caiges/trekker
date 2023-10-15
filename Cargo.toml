@@ -1,7 +1,7 @@
 [package]
 name = "trekker"
-description = "A command line tool to help you manage your database migrations and seeds."
-version = "0.2.0"
+description = "A command line tool to help you manage your PostgreSQL database migrations and seeds."
+version = "0.2.1"
 authors = ["caiges <caigesn@gmail.com>"]
 edition = "2018"
 
